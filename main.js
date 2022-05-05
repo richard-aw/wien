@@ -93,9 +93,39 @@ let stephansdom = {
         L.geoJSON(geojson).addTo(overlay);
         }
 
+        //Fussgängerzone
+    async function LoadZones (url){
+        let response = await fetch(url);
+        let geojson = await response.json();
+        //console.log(geojson);  
+    
+        let overlay = L.featureGroup();
+        layerControl.addOverlay(overlay, "Fussgängerzonen");
+        overlay.addTo(map);
+    
+        L.geoJSON(geojson).addTo(overlay);
+        }
+
+          //Hotels
+    async function LoadHotels (url){
+        let response = await fetch(url);
+        let geojson = await response.json();
+        //console.log(geojson);  
+    
+        let overlay = L.featureGroup();
+        layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
+        overlay.addTo(map);
+    
+        L.geoJSON(geojson).addTo(overlay);
+        }
+
 
   loadSites("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
 
   loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
 
   loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json");
+
+  LoadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
+
+  LoadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
