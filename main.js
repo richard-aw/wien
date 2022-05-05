@@ -108,7 +108,7 @@ let stephansdom = {
                
                 return L.marker (latlng, {
                     icon: L.icon({
-                        iconUrl: "icons/bus.png",
+                        iconUrl: `icons/bus_${geoJsonPoint.properties.LINE_ID}.png`,
                         iconAnchor: [16, 37], 
                         popupAnchor: [0, -37]
                     })
@@ -154,7 +154,28 @@ let stephansdom = {
         layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
         overlay.addTo(map);
     
-        L.geoJSON(geojson).addTo(overlay);
+        L.geoJSON(geojson, {
+            pointToLayer: function(geoJsonPoint, latlng){
+                //L.marker(latlng).addTo(map)
+                console.log(geoJsonPoint.properties.NAME);
+                let popup = 
+                `<img src="${geoJsonPoint.properties.THUMBNAIL}"
+                alt=""><br<
+                <strong>${geoJsonPoint.properties.NAME}<strong>
+                <hr>
+                Adresse: ${geoJsonPoint.properties.ADRESSE}<br>
+                <a href ="${geoJsonPoint.properties.WEITERE_INF}" >Weblink</a>
+                `;
+               
+                return L.marker (latlng, {
+                    icon: L.icon({
+                        iconUrl: "icons/hotel.png",
+                        iconAnchor: [16, 37], 
+                        popupAnchor: [0, -37]
+                    })
+                }).bindPopup(popup);
+        }
+        }).addTo(overlay);
         }
 
 
@@ -166,4 +187,4 @@ let stephansdom = {
 
   //LoadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
 
-  //LoadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
+  LoadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
