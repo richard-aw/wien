@@ -148,7 +148,7 @@ let stephansdom = {
     async function LoadHotels (url){
         let response = await fetch(url);
         let geojson = await response.json();
-        //console.log(geojson);  
+        
     
         let overlay = L.featureGroup();
         layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
@@ -161,11 +161,24 @@ let stephansdom = {
                 let popup = 
                 `<img src="${geoJsonPoint.properties.THUMBNAIL}"
                 alt=""><br<
-                <strong>${geoJsonPoint.properties.NAME}<strong>
+                <strong>${geoJsonPoint.properties.BETRIEB}<strong>
                 <hr>
                 Adresse: ${geoJsonPoint.properties.ADRESSE}<br>
+                Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}<br>
+                Kategorie: ${geoJsonPoint.properties.KATEGORIE_TXT}<br>
+                E-Mail: ${geoJsonPoint.properties.KONTAKT_EMAIL}<br>
+                Website: ${geoJsonPoint.properties.WEBLINK1}<br>
                 <a href ="${geoJsonPoint.properties.WEITERE_INF}" >Weblink</a>
+                Telefonnummer: ${geoJsonPoint.properties.KONTAKT_TEL}<br>
                 `;
+
+                if (BETRIEBSART_TXT = Hotel) {
+                    iconUrl = "icons/hotel.png";
+                  } else if (BETRIEBSART_TXT = Pension) {
+                    iconUrl = "icons/lodgingstar.png";
+                  } else {
+                    iconUrl = "icons/apartment.png";
+                  }
                
                 return L.marker (latlng, {
                     icon: L.icon({
