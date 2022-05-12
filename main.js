@@ -202,7 +202,7 @@ let stephansdom = {
       layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
       overlay.addTo(map);
   
-      L.geoJSON(geojson, {
+      let hotelsLayer = L.geoJSON(geojson, {
           pointToLayer: function(geoJsonPoint, latlng) {
               //L.marker(latlng).addTo(map)
               let searchlist = document.querySelector("#searchList");
@@ -247,6 +247,9 @@ let stephansdom = {
       let form = document.querySelector("#searchForm");
       form.suchen.onclick = function(){
           console.log(form.hotel.value);
+          hotelsLayer.eachLayer(function(marker){
+              console.log(marker)
+          })
       }
   }
   loadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
