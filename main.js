@@ -249,6 +249,10 @@ let stephansdom = {
           console.log(form.hotel.value);
           hotelsLayer.eachLayer(function(marker){
               console.log(marker)
+              console.log(marker.getLatLng())
+              console.log(marker.getPopup())
+              console.log(marker.feature.properties.BETRIEB)
+
           })
       }
   }
