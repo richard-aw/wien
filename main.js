@@ -207,8 +207,8 @@ let stephansdom = {
               //L.marker(latlng).addTo(map)
               let searchlist = document.querySelector("#searchList");
               searchlist.innerHTML += `<option value = "${geoJsonPoint.properties.BETRIEB}"></option`;
-              console.log(document.querySelector("#searchList"))
-              //console.log(`<option value = "${geoJsonPoint.properties.BETRIEB}"></option`);
+            // console.log(document.querySelector("#searchList"))
+            //console.log(`<option value = "${geoJsonPoint.properties.BETRIEB}"></option`);
               let popup = `
                   <p>
                       <strong>
@@ -243,5 +243,10 @@ let stephansdom = {
               }).bindPopup(popup);
           }
       }).addTo(overlay);
+
+      let form = document.querySelector("#searchForm");
+      form.suchen.onclick = function(){
+          console.log(form.hotel.value);
+      }
   }
   loadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
