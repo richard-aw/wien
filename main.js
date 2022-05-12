@@ -172,13 +172,6 @@ let stephansdom = {
                 Telefonnummer: ${geoJsonPoint.properties.KONTAKT_TEL}<br>
                 `;
 
-                if (BETRIEBSART_TXT = Hotel) {
-                    iconUrl = "icons/hotel.png";
-                  } else if (BETRIEBSART_TXT = Pension) {
-                    iconUrl = "icons/lodgingstar.png";
-                  } else {
-                    iconUrl = "icons/apartment.png";
-                  }
                
                 return L.marker (latlng, {
                     icon: L.icon({
@@ -187,17 +180,23 @@ let stephansdom = {
                         popupAnchor: [0, -37]
                     })
                 }).bindPopup(popup);
+
+                
+
+        
         }
         }).addTo(overlay);
         }
 
+       
+
 
   loadSites("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
 
- // loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
+  loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
 
   loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json");
 
-  //LoadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
+  LoadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
 
   LoadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
