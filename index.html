@@ -51,11 +51,15 @@
         </header>
         <article>
             <form id="searchForm">
-                <input type="text" name="hotel" placeholder="Hotel suchen ...">
+                <input type="text" name="hotel" placeholder="Hotel suchen ..." list="seachlist">
                 <input type="button" name="suchen" value="Anzeigen">
                 <input type="reset" value="Reset">
             </form>
-
+            <datalist id="searchlist">
+                <option value="eins"></option>
+                <option value="zwei"></option>
+                <option value="drei"></option>
+            </datalist>
             <div id="map"></div>
         </article>
         <footer>
