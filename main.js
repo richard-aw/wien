@@ -205,7 +205,10 @@ let stephansdom = {
       L.geoJSON(geojson, {
           pointToLayer: function(geoJsonPoint, latlng) {
               //L.marker(latlng).addTo(map)
-              //console.log(geoJsonPoint.properties);
+              let searchlist = document.querySelector("#searchList");
+              searchlist.innerHTML += `<option value = "${geoJsonPoint.properties.BETRIEB}"></option`;
+              console.log(document.querySelector("#searchList"))
+              //console.log(`<option value = "${geoJsonPoint.properties.BETRIEB}"></option`);
               let popup = `
                   <p>
                       <strong>
