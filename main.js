@@ -172,13 +172,14 @@ let stephansdom = {
                 Telefonnummer: ${geoJsonPoint.properties.KONTAKT_TEL}<br>
                 `;
 
-                //if (BETRIEBSART_TXT = Hotel) {
-                  //  iconUrl = "icons/hotel.png";
-                 // } else if (BETRIEBSART_TXT = Pension) {
-                  //  iconUrl = "icons/pension.png";
-                 // } else {
-                  //  iconUrl = "icons/apartment.png";
-                 // }
+                let icon;
+                if (geoJsonPoint.properties.BETRIEBSART == "H") {
+                    icon = "hotel_0star";
+                } else if (geoJsonPoint.properties.BETRIEBSART == "P") {
+                    icon = "lodging_0star";
+                } else {
+                    icon = "apartment-2";
+                }
                
                 return L.marker (latlng, {
                     icon: L.icon({
